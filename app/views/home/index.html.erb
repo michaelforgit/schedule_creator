@@ -1,7 +1,7 @@
-<h1>Home#index</h1>
+<p class = "h2">Home#index</h2>
 <% if user_signed_in? %> <h1> <%= current_user %></h1> <% else %> <h1> NOT SINGED IN </h1> <% end %>
 
 
 <%= button_to "Sign up", new_user_registration_path, method: :get %>
 <%= button_to "Login", user_session_path, method: :get %>
-<%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn" %>
