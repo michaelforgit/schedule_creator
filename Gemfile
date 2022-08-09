@@ -15,7 +15,11 @@ gem "sqlite3", "~> 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
+# Devise
 gem "devise"
+
+# Simple Calendar
+gem "simple_calendar", "~> 2.4"
 
 # Bootstrap
 gem 'bootstrap', '~> 5.1.3'

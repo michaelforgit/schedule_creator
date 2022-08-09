@@ -1,0 +1,12 @@
+<h1> Welcome </h1>
+
+<%= month_calendar(events: @appointments) do |date, app| %>
+  <%= date.day %>
+
+  <% app.each do |app| %>
+    <div>
+      <%= app.id %>
+      <%= app.start_time %>
+    </div>
+  <% end %>
+<% end %>
