@@ -1,4 +1,4 @@
-<h1> Welcome </h1>
+<h1> Appointments </h1>
 
 <div class = "row container-fluid">
     <div class = "col-9">
@@ -8,9 +8,7 @@
             <% app.each do |app| %>
                 <div>
                     <p class = "mb-0">
-                        <%= app.start_time.strftime('%H:%M') %>
-                        to
-                        <%= app.end_time.strftime('%H:%M') %>
+                      <%= button_to "#{app.start_time.strftime('%H:%M')} to #{app.end_time.strftime('%H:%M')}", edit_appointment_path(app.id), method: :get, class: "btn btn-primary" %>
                     </p>
                 </div>
             <% end %>
@@ -23,3 +21,4 @@
         <% end %>
     </div>
 <div>
+<%= link_to "Home Page", root_path, method: :get, class: "btn btn-primary" %>
