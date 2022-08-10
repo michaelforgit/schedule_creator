@@ -1,12 +1,25 @@
 <h1> Welcome </h1>
 
-<%= month_calendar(events: @appointments) do |date, app| %>
-  <%= date.day %>
+<div class = "row container-fluid">
+    <div class = "col-9">
+        <%= month_calendar(events: @appointments) do |date, app| %>
+            <%= date.day %>
 
-  <% app.each do |app| %>
-    <div>
-      <%= app.id %>
-      <%= app.start_time %>
+            <% app.each do |app| %>
+                <div>
+                    <p class = "mb-0">
+                        <%= app.start_time.strftime('%H:%M') %>
+                        to
+                        <%= app.end_time.strftime('%H:%M') %>
+                    </p>
+                </div>
+            <% end %>
+        <% end %>
     </div>
-  <% end %>
-<% end %>
+    <div class = "col-3">
+        <h5> Upcoming Appointments Today</h5>
+        <% @appointments.each do |app| %>
+            <p> <%= app.id %> </p>
+        <% end %>
+    </div>
+<div>
