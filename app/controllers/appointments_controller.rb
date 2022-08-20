@@ -3,10 +3,9 @@ class AppointmentsController < ApplicationController
     def new
     end
     def create
-        flash.notice = "Appointment Created"
-        start_time = params[:start_time]
-        end_time = params[:end_time]
-        app = Appointment.create(start_time: start_time, end_time: end_time)
+        flash.notice = "Appointment Created #{params[:description]}"
+        start_time = DateTime.new(params["start_time(1i)"].to_i, params["start_time(2i)"].to_i, params["start_time(3i)"].to_i, params["start_time(4i)"].to_i, params["start_time(5i)"].to_i)
+        app = Appointment.create(start_time: start_time, end_time: start_time + (params[:Appointment][:duration].to_i).minutes)
         redirect_to root_path
     end
     def index
