@@ -3,10 +3,14 @@
 
 
     <div class="row justify-content-center">
-        <div class="col-3">
+        <div class="col-12 col-lg-5">
             <%= form_with model: @appointment, url: appointments_path(), method: :create do |form| %>
-                <%= form.datetime_select :start_time, {end_year: Date.current.year+1, start_year: Date.current.year, ampm: true, minute_step: 15, prompt: { hour: 'Choose hour', minute: 'Choose minute'}}, 
-                {class: "form-control my-2"} %>
+                <div class="row mx-0">
+                    <%= form.date_select :input_start_date, {time_separator: "", date_separator: "", datetime_separator: "", end_year: Date.current.year+1, start_year: Date.current.year, ampm: true}, {class: "form-control my-2 col"} %>
+                </div>
+                <div class="row mx-0">
+                    <%= form.time_select :input_start_time, {time_separator: "", date_separator: "", datetime_separator: "", ampm: true, minute_step: 15, prompt: { hour: 'Choose hour', minute: 'Choose minute'}}, {class: "form-control my-2 col"} %>
+                </div>
                 <select name="Appointment[duration]" class="form-control my-2" >
                     <option value="30">15 Minutes</option>
                     <option value="45">30 Minutes</option>
