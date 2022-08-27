@@ -3,9 +3,15 @@ class AppointmentsController < ApplicationController
     def new
     end
     def create
-        flash.notice = "Appointment Created #{params[:description]}"
         start_time = DateTime.new(params["input_start_date(1i)"].to_i, params["input_start_date(2i)"].to_i, params["input_start_date(3i)"].to_i, params["input_start_time(4i)"].to_i, params["input_start_time(5i)"].to_i)
-        app = Appointment.create(start_time: start_time, end_time: start_time + (params[:Appointment][:duration].to_i).minutes)
+        end_time = start_time + (params[:Appointment][:duration].to_i).minutes
+        appointments_at_same_time = Appointment.where("end_time >?", start_time).and(Appointment.where.not("start_time >?", end_time))
+        if (appointments_at_same_time.count) == 0
+            app = Appointment.create(start_time: start_time, end_time: end_time)
+            flash.notice = "Appointment Created #{params[:description]}"
+        else
+            flash.alert = "Appointment not created it coincided with another time."
+        end
         redirect_to root_path
     end
     def index
@@ -20,5 +26,8 @@ class AppointmentsController < ApplicationController
     end
     def edit
         @appointment = Appointment.find(params[:id])
+    end
+    def colission_check
+
     end
 end

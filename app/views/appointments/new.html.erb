@@ -4,17 +4,17 @@
 
     <div class="row justify-content-center">
         <div class="col-12 col-lg-5">
-            <%= form_with model: @appointment, url: appointments_path(), method: :create do |form| %>
+            <%= form_with model: @appointment, url: appointments_path(), html: {class: "form-control"}, data: {controller: "test"}, method: :create do |form| %>
                 <div class="row mx-0">
-                    <%= form.date_select :input_start_date, {time_separator: "", date_separator: "", datetime_separator: "", end_year: Date.current.year+1, start_year: Date.current.year, ampm: true}, {class: "form-control my-2 col"} %>
+                    <%= form.date_field :date, min: Date.today, max: Date.today + 1.month, class: "form-control my-2 col", data: {controller: "test", action: "change->test#output"} %>
                 </div>
                 <div class="row mx-0">
-                    <%= form.time_select :input_start_time, {time_separator: "", date_separator: "", datetime_separator: "", ampm: true, minute_step: 15, prompt: { hour: 'Choose hour', minute: 'Choose minute'}}, {class: "form-control my-2 col"} %>
+                    <%= form.time_select :input_start_time, {time_separator: "", date_separator: "", datetime_separator: "", ampm: true, minute_step: 15, start_hour: 10, end_hour: 18}, {class: "form-control my-2 col"} %>
                 </div>
                 <select name="Appointment[duration]" class="form-control my-2" >
-                    <option value="30">15 Minutes</option>
-                    <option value="45">30 Minutes</option>
-                    <option value="60">45 Minutes</option>
+                    <option value="15">15 Minutes</option>
+                    <option value="30">30 Minutes</option>
+                    <option value="45">45 Minutes</option>
                 </select>
                 <%= form.label "Enter appointment description", class: "mt-2 w-100" %>
                 <%= form.text_area :description, rows: 5, class: "my-2 w-100" %>
