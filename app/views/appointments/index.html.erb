@@ -6,7 +6,7 @@
             <%= date.day %>
             <div>
               <% app.each do |app| %>
-                <%= button_to "#{app.start_time.strftime('%H:%M')}-#{app.end_time.strftime('%H:%M')}", edit_appointment_path(app.id), method: :get, class: "btn btn-outline-primary mb-3" %>
+                <%= button_to "#{app.start_time.strftime('%H:%M %p')}-#{app.end_time.strftime('%H:%M %p')}", edit_appointment_path(app.id), method: :get, class: "btn btn-outline-primary mb-3" %>
               <% end %>
             </div>
         <% end %>
@@ -19,8 +19,3 @@
     </div>
 <div>
 <%= link_to "Home Page", root_path, method: :get, class: "btn btn-primary" %>
-
-  <div data-controller="hello">
-    <input data-hello-target="name" type="text">
-    <button data-action="click->hello#greet">Greet</button>
-  </div>

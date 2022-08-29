@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_08_064719) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_145030) do
+  create_table "appointment_constraints", force: :cascade do |t|
+    t.string "day"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "appointments", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"

@@ -1,0 +1,2 @@
+module AppointmentConstraintHelper
+end

@@ -16,7 +16,12 @@
 
  @import "bootstrap";
  @import "simple_calendar";
+ @import "font-awesome";
 
  .simple-calendar .today {
-  background: #e0fbfc
+  background: #008da0 !important
+ }
+
+ .dropdown-title {
+  font-size: 1.15rem
  }

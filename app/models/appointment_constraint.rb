@@ -1,0 +1,2 @@
+class AppointmentConstraint < ApplicationRecord
+end

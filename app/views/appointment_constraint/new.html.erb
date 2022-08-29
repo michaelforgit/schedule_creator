@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8 mt-3 mt-lg-5">
+            <div class = "form-control mb-3" data-controller="dropdown">
+                <div class="d-flex justify-content-between">
+                    <p class="my-1 dropdown-title">Current Hours</p>
+                    <button class="btn btn-danger" data-action="click->dropdown#visibility" data-dropdown-target="hide_button"><i class="fa-solid fa-minus fa-2xs" data-dropdown-target="hide_icon"></i></button>
+                </div>
+                <% for i in 0..6 do %>
+                    <%= render partial: 'appointment_constraint/partials/timetable', locals: { iteration: i } %>
+                <% end %>
+            </div>
+            <%= form_with model: @appointmentconstraints, url: appointment_constraint_index_path(), html: {class: "form-control mb-3"}, data: {controller: "dropdown"}, method: :create do |form| %>
+                <div class="d-flex justify-content-between">
+                    <p class="my-1 dropdown-title">Create New Hours</p>
+                    <button type="button" class="btn btn-danger" data-action="click->dropdown#visibility" data-dropdown-target="hide_button"><i class="fa-solid fa-minus fa-2xs" data-dropdown-target="hide_icon"></i></button>
+                </div>
+                <div class="form-control mt-2" data-dropdown-target="hideable">
+                    <%= form.label "Select Day" %>
+                    <select name="appointment_constraint[value]" class="form-control my-2">
+                        <option value="0">Monday</option>
+                        <option value="1">Tuesday</option>
+                        <option value="2">Wednesday</option>
+                        <option value="3">Thursday</option>
+                        <option value="4">Friday</option>
+                        <option value="5">Saturday</option>
+                        <option value="6">Sunday</option>
+                    </select>
+                    <div class="row">
+                        <%= form.label "Start Time" %>
+                        <%= form.time_select :input_start_time, {time_separator: "", date_separator: "", datetime_separator: "", ampm: true, minute_step: 15}, {class: "form-control my-2 mx-2 col"} %>
+                        <%= form.label "End Time" %>
+                        <%= form.time_select :input_end_time, {time_separator: "", date_separator: "", datetime_separator: "", ampm: true, minute_step: 15}, {class: "form-control my-2 mx-2 col"} %>
+                    </div>
+                    <%= form.submit "Create New Hours", class: "btn btn-primary my-2 w-100" %>
+                </div>
+            <% end %>
+            <div class="text-center">
+                <%= link_to "Home Page", home_index_path, method: :get, class: "btn btn-danger mb-3" %>
+            </div>
+        </div>
+    </div>
+</div>

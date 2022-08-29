@@ -1,0 +1,14 @@
+<div class="mx-0 mt-2 form-control" data-dropdown-target="hideable">
+  <div>
+      <p class="mb-1"><%= @daysOfWeek[iteration].humanize %></p>
+  </div>
+  <div>
+      <div class="row">
+          <% @appointmentconstraints.where(value: iteration).each do |appConstraint| %>
+              <div class="col-12 col-md-auto mb-2">
+                  <%= button_to "#{appConstraint.start_time.strftime('%I:%M %p')}-#{appConstraint.end_time.strftime('%I:%M %p')}", edit_appointment_constraint_path(appConstraint.id), method: "get", class: "btn btn-outline-primary d-inline px-2 py-1 w-100", type: "button" %>
+              </div>
+          <% end %>
+      </div>
+  </div>
+</div>

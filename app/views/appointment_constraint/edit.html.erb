@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8 mt-3 mt-lg-5">
+            <%= form_with model: @appointment_constraint, url: appointment_constraint_path(@appointment_constraint), html: {class: "form-control mb-3"}, data: {controller: "dropdown"}, method: :create do |form| %>
+                <div class="d-flex justify-content-between">
+                    <p class="my-1 dropdown-title">Edit Hours for <%= @appointment_constraint.day.humanize %></p>
+                    <button type="button" class="btn btn-danger" data-action="click->dropdown#visibility" data-dropdown-target="hide_button"><i class="fa-solid fa-minus fa-2xs" data-dropdown-target="hide_icon"></i></button>
+                </div>
+                <div class="form-control mt-2" data-dropdown-target="hideable">
+                    <div class="row">
+                        <%= form.label "Start Time" %>
+                        <%= form.time_select :input_start_time, {time_separator: "", date_separator: "", datetime_separator: "", ampm: true, minute_step: 15}, {class: "form-control my-2 mx-2 col"} %>
+                        <%= form.label "End Time" %>
+                        <%= form.time_select :input_end_time, {time_separator: "", date_separator: "", datetime_separator: "", ampm: true, minute_step: 15}, {class: "form-control my-2 mx-2 col"} %>
+                    </div>
+                    <div class="mx-md-5">
+                        <%= form.submit "Save Edit", class: "btn btn-primary my-2 w-100" %>
+                        <%= link_to "Delete Item", home_index_path, method: :get, class: "btn btn-danger mb-3 w-100" %>
+                    </div>
+                </div>
+            <% end %>
+            <div class="d-flex justify-content-between">
+                <%= link_to "Back", new_appointment_constraint_path, method: :get, class: "btn btn-primary mb-3" %>
+                <%= link_to "Home Page", home_index_path, method: :get, class: "btn btn-primary mb-3" %>
+            </div>
+        </div>
+    </div>
+</div>

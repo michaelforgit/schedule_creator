@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :appointments
+  resources :appointment_constraint
   get 'home/index'
   devise_for :users
 
